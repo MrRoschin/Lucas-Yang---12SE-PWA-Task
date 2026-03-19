@@ -5,8 +5,8 @@
 --     owasp_rank INTEGER 
 -- );
 
-INSERT INTO vulnerabilities (vul_name, owasp_rank)
-VALUES ("Injection", 1), ("Broken Access Control", 2), ("Authentication Failures", 3);
+-- INSERT INTO vulnerabilities (vul_name, owasp_rank)
+-- VALUES ("Injection", 1), ("Broken Access Control", 2), ("Authentication Failures", 3);
 -- DELETE FROM vulnerabilities WHERE id = 2;
 
 -- CREATE TABLE incidents (
@@ -39,3 +39,8 @@ VALUES ("Injection", 1), ("Broken Access Control", 2), ("Authentication Failures
 -- UPDATE incidents
 -- SET inc_url = 'https://www.upguard.com/blog/how-did-the-optus-data-breach-happen'
 -- WHERE id = 1;
+
+-- TO DO: Write a query that shows all incidents of category Broken Access Control
+-- SELECT *
+-- FROM incidents;
+-- WHERE vul_id = 9
