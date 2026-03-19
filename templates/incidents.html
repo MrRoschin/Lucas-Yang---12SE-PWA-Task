@@ -3,12 +3,23 @@
 <!-- update the heading to be the vulnerability name that was clicked on from index.html -->
 
 {% block heading %}
-{{ vulnerability }}
+{{ vulnerability[0] }}
 {% endblock %}
 
 {% block content %}
 <!-- Use a for loop to display the incidents that match the vulnerability. -->
-
 <!-- Add the button for adding a new incident -->
+
+<div class="row">
+    {% for i in incidents %}
+    <div class="col-12 col-md-12 mb-3">
+        <div class="card p-3">
+            <h5>Incidents: {{ i.owasp_rank }}</h5>
+            <p>{{ i.vul_name }}</p>
+            <a href="/incidents/{{ i.id }}" class="btn btn-primary">View</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
