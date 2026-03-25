@@ -24,11 +24,11 @@ def incident_page(vul_id):
     # TASK 3: Fetch all Incidents linked to this vul_id, return incidents list
     with engine.connect() as connection:
         query = text('SELECT inc_name, inc_url FROM incidents WHERE vul_id = {};'.format(vul_id))
-        print(query)
         result = connection.execute(query).fetchall()
+        new_query = text('SELECT vul_name FROM vulnerabilities WHERE id = {};'.format(vul_id))
+        new_result = connection.execute(new_query).fetchall()
 
-    print(result)
     print(vul_id) #this is a print statement to help you understand what data is being returned
-    return render_template('incidents.html', vulnerability = result)
+    return render_template('incidents.html', vulnerability = new_result, message = result)
 
 app.run(debug=True, reloader_type='stat', port=3000)

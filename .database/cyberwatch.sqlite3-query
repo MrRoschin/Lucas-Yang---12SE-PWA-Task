@@ -44,3 +44,5 @@
 -- SELECT *
 -- FROM incidents;
 -- WHERE vul_id = 9
+
+SELECT vul_name FROM vulnerabilities WHERE id = 10;
