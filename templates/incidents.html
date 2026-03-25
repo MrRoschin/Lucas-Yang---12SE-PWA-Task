@@ -15,9 +15,9 @@
     {% for i in incidents %}
     <div class="col-12 col-md-12 mb-3">
         <div class="card p-3">
-            <h5>Incidents: {{ i.owasp_rank }}</h5>
+            <h5>Incidents: {{ i.inc_name }}</h5>
             <p>{{ i.vul_name }}</p>
-            <a href="/incidents/{{ i.id }}" class="btn btn-primary">View</a>
+            <a href={{ i.inc_url }} class="btn btn-primary">View</a>
         </div>
     </div>
     {% endfor %}
