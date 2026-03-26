@@ -31,4 +31,9 @@ def incident_page(vul_id):
     print(vul_id) #this is a print statement to help you understand what data is being returned
     return render_template('incidents.html', vulnerability = new_result, incidents = result)
 
+@app.route('/add-incident/')
+def add_incident():
+    print('hi')
+    return render_template('add-incident.html', )
+
 app.run(debug=True, reloader_type='stat', port=3000)
