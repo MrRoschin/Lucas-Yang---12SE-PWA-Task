@@ -31,9 +31,30 @@ def incident_page(vul_id):
     print(vul_id) #this is a print statement to help you understand what data is being returned
     return render_template('incidents.html', vulnerability = new_result, incidents = result)
 
-@app.route('/add-incident/')
+@app.route('/add-incident/', methods=['GET'])
 def add_incident():
     print('hi')
-    return render_template('add-incident.html', )
+    return render_template('add-incident.html')
+
+@app.route('/add-incident/', methods=['POST'])
+def add_new_incident():
+    company_name = request.form['inc_name']
+    incident_url = request.form['inc_url']
+    incident_year = request.form['inc_year']
+    print(incident_url)
+
+    # review_date = datetime.now().strftime('%Y-%m-%d')
+
+    # insert_statement = '''
+    #     INSERT INTO reviews (title, release_year, genre, review_date, review_score, review_text)
+    #     VALUES ('{}', {}, '{}', {}, {}, '{}');
+    # '''.format(title, release_year, genre, review_date, review_score, review_text)
+
+    # connection.execute(text(insert_statement))
+    # connection.commit()
+    
+    # return redirect(url_for('home'))
+
+    return render_template('add-incident.html')
 
 app.run(debug=True, reloader_type='stat', port=3000)

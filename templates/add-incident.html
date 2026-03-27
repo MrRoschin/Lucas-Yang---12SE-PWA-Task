@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<form action = "/add_incident/{{ vul_id }}" method="POST">
+<form action = "/add-incident" method="POST">
     <input type="hidden" name="vul_id" value="{{ vul_id }}">
     <div>
         <label for="inc_name">Company Name:</label>
