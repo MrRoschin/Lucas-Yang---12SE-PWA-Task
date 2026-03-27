@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
 
 {% block heading %}
-Add an incident
+{{ vul_id }}
 {% endblock %}
 
 {% block content %}
-<form action = "/incidents" method="POST">
-    <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2 control-label"></label>
-          <div class="col-sm-10">
-            <p class="form-control-static"></p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="col-sm-2 control-label">Incidents</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Name">
-          </div>
-        </div>
-      </form>
+<form action = "/add_incident/{{ vul_id }}" method="POST">
+    <input type="hidden" name="vul_id" value="{{ vul_id }}">
+    <div>
+        <label for="inc_name">Company Name:</label>
+        <input type="text" id="inc_name" name="inc_name" />
+    </div>
+    <div>
+        <label for="inc_url">Incident URL:</label>
+        <input type="url" id="inc_url" name="inc_url" />
+    </div>
+    <div>
+        <label for="inc_year">Incident Year:</label>
+        <input type="number" id="inc_year" name="inc_year" />
+    </div>
+
+    <button type="submit">Submit</button>
+
 </form>
 {% endblock %}
