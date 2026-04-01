@@ -52,9 +52,8 @@ def add_new_incident():
     with engine.connect() as connection:
         connection.execute(text(insert_statement))
         connection.commit()
-    
-    # return redirect(url_for('home'))
 
-    return render_template('add-incident.html')
+    # return render_template('add-incident.html')
+    return redirect(url_for('incident_page', vul_id = vulnerability_id))
 
 app.run(debug=True, reloader_type='stat', port=3000)
