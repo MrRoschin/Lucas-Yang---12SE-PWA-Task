@@ -3,9 +3,10 @@ from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///.database/cyberwatch.db') #link to the cyberwatch database here
+# link to the cyberwatch database here
+engine = create_engine('sqlite:///.database/cyberwatch.db')
 
-#route for index.html
+# route for index.html
 @app.route('/')
 def home():
     
@@ -17,24 +18,35 @@ def home():
 
     return render_template('index.html', vulnerabilities=result)
 
+
 @app.route('/incidents/<vul_id>')
 def incident_page(vul_id):
     # TASK 1: Connect to the database
     # TASK 2: Fetch the Vulnerability Name for the heading (JOIN or separate query)
     # TASK 3: Fetch all Incidents linked to this vul_id, return incidents list
+
     with engine.connect() as connection:
         query = text('SELECT inc_name, inc_url FROM incidents WHERE vul_id = {};'.format(vul_id))
         result = connection.execute(query).fetchall()
+
         new_query = text('SELECT vul_name FROM vulnerabilities WHERE id = {};'.format(vul_id))
         new_result = connection.execute(new_query).fetchall()
 
-    print(vul_id) #this is a print statement to help you understand what data is being returned
-    return render_template('incidents.html', vulnerability = new_result, incidents = result, vul_id = vul_id)
+    print(vul_id)  # this is a print statement to help you understand what data is being returned
+
+    return render_template(
+        'incidents.html',
+        vulnerability=new_result,
+        incidents=result,
+        vul_id=vul_id
+    )
+
 
 @app.route('/add-incident/<vul_id>', methods=['GET'])
 def add_incident(vul_id):
     print(vul_id)
-    return render_template('add-incident.html', vul_id = vul_id)
+    return render_template('add-incident.html', vul_id=vul_id)
+
 
 @app.route('/add-incident/', methods=['POST'])
 def add_new_incident():
@@ -53,7 +65,10 @@ def add_new_incident():
         connection.execute(text(insert_statement))
         connection.commit()
 
-    # return render_template('add-incident.html')
-    return redirect(url_for('incident_page', vul_id = vulnerability_id))
+    return redirect(url_for('incident_page', vul_id=vulnerability_id))
 
-app.run(debug=True, reloader_type='stat', port=3000)
+
+#app.run(debug=True, reloader_type='stat', port=3000) OLD STARTUP METHOD
+
+if __name__ == "__main__":
+    app.run(debug=True, port=3000)

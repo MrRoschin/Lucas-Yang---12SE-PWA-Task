@@ -12,7 +12,7 @@
 <!-- Add the button for adding a new incident -->
 
 <div class="mb-3">
-    <a href="/" class="btn btn-secondary">← Back to Vulnerabilities</a>
+    <a href="/" class="btn btn-secondary sound-hit">← Back to Vulnerabilities</a>
 </div>
 
 <div class="row">
@@ -21,10 +21,14 @@
         <div class="card p-3">
             <h5>Incidents: {{ i.inc_name }}</h5>
             <p>{{ i.vul_name }}</p>
-            <a href={{ i.inc_url }} class="btn btn-primary">View</a>
+            <a href="{{ i.inc_url }}" class="btn btn-primary">View</a>
         </div>
     </div>
     {% endfor %}
 </div>
-<a href="/add-incident/{{ vul_id }}" class="btn btn-primary">Add incident</a>
+<div class="mt-3">
+    <a href="/add-incident/{{ vul_id }}" class="btn btn-primary sound-damage">
+        Add incident
+    </a>
+</div>
 {% endblock %}
